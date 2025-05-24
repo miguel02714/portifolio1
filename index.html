@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Miguel Viana - Portfólio</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("Design sem nome (9).png");
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, Helvetica, sans-serif;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: rgba(0, 0, 0, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav .nome {
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    nav div {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav p {
+      cursor: pointer;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav p:hover {
+      color: #b6fcb6;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 100px;
+      text-align: center;
+    }
+
+    .fotoperfil {
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border: 3px solid green;
+    }
+
+    .titulo {
+      font-size: 50px;
+      font-weight: 900;
+      margin-top: 30px;
+      border-right: 4px solid white;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 3s steps(30, end) forwards, blink 0.7s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 27ch; }
+    }
+
+    @keyframes blink {
+      0%, 75% { border-color: white; }
+      50% { border-color: transparent; }
+    }
+
+    section {
+      padding: 80px 60px;
+    }
+
+    .meusprojetos {
+      font-size: 35px;
+      font-weight: 800;
+      margin-bottom: 40px;
+      margin-top: 25vh;
+    }
+
+    .projeto {
+      background-color: #0a3b1e;
+      border-radius: 1.1rem;
+      padding: 20px;
+      margin-bottom: 80px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .projeto.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .projeto img {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-right: 40px;
+    }
+
+    .projeto p {
+      flex: 1;
+    }
+
+    .botao {
+      background-color: #0d0d0d;
+      color: #b6fcb6;
+      border: 1px solid #1f1f1f;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .botao:hover {
+      background-color: #121212;
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+    }
+
+    #sobre {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 1rem;
+    }
+
+    #sobre h2 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    #sobre h3 {
+      font-size: 18px;
+      font-weight: normal;
+      line-height: 1.6;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (max-width: 768px) {
+      .titulo {
+        font-size: 20px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        font-size: 14px;
+      }
+
+      .fotoperfil {
+        width: 150px;
+        height: 150px;
+      }
+
+      .projeto img {
+        width: 100%;
+      }
+
+      .botao {
+        width: 100%;
+      }
+
+      #sobre h3 {
+        font-size: 16px;
+      }
+    }
+
+    footer {
+      width: 100%;
+      background-color: #000;
+      border-top: 2px solid #0f0;
+      padding: 40px 20px;
+      text-align: center;
+      color: #ccc;
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer-content p {
+      margin: 10px 0;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .social-icons {
+      margin: 20px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social-icons a img {
+      width: 35px;
+      height: 35px;
+      filter: invert(100%);
+      transition: transform 0.3s, filter 0.3s;
+    }
+
+    .social-icons a:hover img {
+      transform: scale(1.2);
+      filter: invert(67%) sepia(97%) saturate(749%) hue-rotate(74deg) brightness(90%) contrast(89%);
+    }
+
+    .creditos {
+      font-size: 14px;
+      margin-top: 20px;
+      color: #888;
+      text-align: center;
+    }
+    .centro1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap; /* para quebrar em telas menores */
+  margin: 40px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.textochamada {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: white;
+  max-width: 550px;
+  line-height: 1.4;
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+  margin: 0;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.download-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.03);
+}
+
+.download-btn:active {
+  transform: scale(0.97);
+  background-color: #3e8e41;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <p class="nome">MIGUEL VIANA</p>
+    <div>
+      <p onclick="scrollToSection('sobre')">Sobre Mim</p>
+      <p onclick="scrollToSection('projetos')">Projetos</p>
+      <p onclick="scrollToSection('contato')">Contato</p>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <img src="1000080428.png" class="fotoperfil" alt="Foto de Perfil" />
+    <p class="titulo">PROGRAMADOR FULL STACK</p>
+  </div>
+  <div class="centro1">
+  <p class="textochamada">Baixe meu currículo agora mesmo e descubra como posso ajudar seu time!</p>
+  <a href="Miguel Viana (2).pdf" download class="download-btn">
+    📥 Baixar Currículo
+  </a>
+</div>
+  <section id="projetos">
+    <p class="meusprojetos">Meus projetos</p>
+
+    <div class="projeto fade">
+      <img src="Design sem nome (10).png" alt="Neura Bot">
+      <div>
+        <p>
+          A <strong>Neura Bot</strong> é uma inteligência artificial 100% brasileira desenvolvida com tecnologia própria por Miguel Viana. Criada do zero, ela representa um avanço significativo na forma como interagimos com sistemas inteligentes. Capaz de compreender emoções, automatizar tarefas e oferecer respostas personalizadas, a Neura Bot une eficiência, empatia e inovação em uma única plataforma.
+          <br><br>
+          Projetada para ser leve, intuitiva e altamente adaptável, ela atende desde usuários comuns até projetos complexos de automação e atendimento digital. Com um propósito social e foco em acessibilidade, a Neura Bot prova que tecnologia nacional pode ser referência em inteligência artificial.
+        </p>
+        <button class="botao">Quero testar</button>
+      </div>
+    </div>
+
+    <div class="projeto fade">
+      <img src="Design sem nome (11).png" alt="We Sport Advice">
+      <div>
+        <p>
+          A <strong>We Sport Advice</strong> é uma empresa londrina especializada em assessoria personalizada para jogadores de futebol, oferecendo suporte estratégico em todas as fases da carreira profissional. Com foco em planejamento de imagem, gestão de contratos, orientação jurídica e expansão internacional, a empresa proporciona aos atletas uma base sólida para crescer com segurança e destaque no mercado esportivo.
+          <br><br>
+          O site foi desenvolvido para transmitir os valores da marca com uma identidade visual moderna, elegante e esportiva. A experiência do usuário foi pensada para refletir profissionalismo, confiança e inovação — características que também definem o trabalho da We Sport Advice no cenário global do futebol.
+        </p>
+        <button class="botao">Quero testar</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <h2>SOBRE MIM</h2>
+    <h3>
+      Olá! Sou Miguel Viana, um jovem empreendedor apaixonado por inovação, desenvolvimento de sistemas e estratégias digitais. Desde cedo, me dedico ao universo da tecnologia com o objetivo de transformar ideias em soluções reais e impactantes.
+      <br><br>
+      Com uma forte base em desenvolvimento back-end com Python e construção de interfaces web com HTML e CSS, atuo em projetos que unem tecnologia e visão de negócio. Entre eles, destaco a criação da <strong>Neura Bot</strong> — uma assistente inteligente com foco em experiências personalizadas — e a liderança na <strong>Quantified</strong>, uma empresa voltada à performance digital e presença online.
+      <br><br>
+      Estou em constante evolução, estudando todos os dias para me tornar um <strong>programador full stack</strong> com excelência técnica, capacidade estratégica e visão de produto. Minha missão é criar um ecossistema de empresas digitais escaláveis, com atuação global e impacto positivo na vida das pessoas.
+      <br><br>
+      Acredito que a combinação entre tecnologia, criatividade e disciplina é o caminho para construir um futuro promissor — e é exatamente isso que estou fazendo, um projeto de cada vez.
+    </h3>
+  </section>
+
+  <footer id="contato">
+    <div class="footer-content">
+      <p>Siga-me nas redes sociais:</p>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/mviana_sp/" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
+        </a>
+        <a href="https://www.linkedin.com/in/miguel-viana-web-developer/" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn">
+        </a>
+        <a href="https://wa.me/5511931025049" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp">
+        </a>
+      </div>
+      <div class="creditos">
+        &copy; 2025 Miguel Viana. Todos os direitos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function scrollToSection(id) {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    });
+
+    document.querySelectorAll('.projeto').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
